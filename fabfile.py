@@ -22,7 +22,8 @@ def deploy():
         cd {} &&
         ../env/bin/pip install -r requirements.txt &&
         ../env/bin/python3 manage.py collectstatic --noinput &&
-        ../env/bin/python3 manage.py migrate
+        ../env/bin/python3 manage.py migrate &&
+        ../env/bin/python3 manage.py rebuild_index
         """.format(source_folder))
     sudo('restart gunicorn-lovemoon.online')
     sudo('service nginx reload')
